@@ -1,28 +1,11 @@
 <?php 
-    
-
+    require __DIR__.'/functions.php';
+    $password = "";
     if (isset($_GET['length'])){
 
         $passLength = intval($_GET['length']);
-
         
-
-        if($passLength >=5 && $passLength <= 15){
-                
-
-                $caratteri ='ABCDEFGHILMNOPQRSTUVZabcdefghilmnopqrstuvz123456789!?&%$£@#+*';
-                $min = 0;
-                $max = strlen($caratteri) - 1;
-                
-                $password = '';
-                for($i = 0;$i < $passLength;$i++ ){
-                    $carattereCasuale = $caratteri[rand($min,$max)];
-                    
-
-                    $password .= $carattereCasuale;
-                }
-                
-        }
+        $password = generatorePassword($_GET['length']);
     }
 
     
