@@ -1,3 +1,34 @@
+<?php 
+    
+
+    if (isset($_GET['length'])){
+
+        $passLength = intval($_GET['length']);
+
+        
+
+        if($passLength >=5 && $passLength <= 15){
+                
+
+                $caratteri ='ABCDEFGHILMNOPQRSTUVZabcdefghilmnopqrstuvz123456789!?&%$£@#+*';
+                $min = 0;
+                $max = strlen($caratteri) - 1;
+                
+                $password = '';
+                for($i = 0;$i < $passLength;$i++ ){
+                    $carattereCasuale = $caratteri[rand($min,$max)];
+                    
+
+                    $password .= $carattereCasuale;
+                }
+                
+        }
+    }
+
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +62,11 @@
                                     id="length"
                                     name="length"
                                     type="number" 
-                                    class="form-control"  placeholder="Inserisci lunghezza">
+                                    class="form-control"
+                                    required
+                                    min="5"
+                                    max="15"
+                                    placeholder="Inserisci lunghezza">
                                 </div>
                                 <div >
                                     <button type="submit" class="btn btn-primary mb-3">Genera Password</button>
@@ -39,6 +74,23 @@
                             </form>
                         </div>
                     </div>
+
+                   <?php 
+                    if(strlen($password)>0){
+                    ?>
+                     <div class="row">
+                        <div class="col">
+                            <h2>
+                                La password è:
+                                <?php 
+                                    echo $password;
+                                ?>
+                            </h2>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                   ?>
         </div>
     </main>
 
